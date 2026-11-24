@@ -1,0 +1,754 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>  A Secret For You ❤️</title>
+
+<style>
+
+/* STEP 1: BASIC WEBSITE DESIGN */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(
+        135deg,
+        #ffe0eb,
+        #fff0f5,
+        #ffd1e2
+    );
+    overflow-x: hidden;
+    padding: 30px 12px;
+    color: #7b3853;
+}
+
+main {
+    width: 100%;
+    max-width: 520px;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.card {
+    background: rgba(255,255,255,0.92);
+    border-radius: 28px;
+    padding: 35px 22px;
+    text-align: center;
+    box-shadow: 0 15px 45px rgba(210,75,125,0.18);
+    border: 1px solid white;
+}
+
+h1 {
+    color: #e84378;
+    font-size: 32px;
+    margin: 15px 0;
+}
+
+h2 {
+    color: #d94b7b;
+    font-size: 23px;
+    margin: 18px 0;
+}
+
+p {
+    color: #8c6575;
+    font-size: 15px;
+    line-height: 1.8;
+    margin: 12px 0;
+}
+
+.main-heart {
+    font-size: 60px;
+    animation: beat 1.3s infinite;
+}
+
+@keyframes beat {
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* STEP 2: BUTTON DESIGN */
+
+button {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: 0.25s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:hover {
+    transform: translateY(-3px);
+}
+
+.btn {
+    padding: 14px 24px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 8px 4px;
+}
+
+.yes-btn {
+    background: linear-gradient(
+        135deg,
+        #ff76a4,
+        #e84378
+    );
+    color: white;
+    box-shadow: 0 5px 15px #f6b0c9;
+}
+
+.no-btn {
+    background: #fff0f5;
+    color: #d94b7b;
+    border: 1px solid #ffc1d5;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* STEP 3: FLOATING HEARTS */
+
+.heart {
+    position: fixed;
+    bottom: -40px;
+    pointer-events: none;
+    z-index: 1;
+    animation: floatHeart linear forwards;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* STEP 4: CALENDAR DESIGN */
+
+.calendar-card {
+    background: white;
+    margin-top: 22px;
+    padding: 25px 12px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(210,75,125,0.12);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.calendar-header h3 {
+    color: #e84378;
+    font-size: 18px;
+}
+
+.nav-btn {
+    background: #ffe0eb;
+    color: #d94b7b;
+    padding: 9px 14px;
+    border-radius: 12px;
+    font-size: 18px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.day-name {
+    font-size: 12px;
+    color: #d94b7b;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+.day {
+    aspect-ratio: 1;
+    background: #fff5f9;
+    color: #80566a;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.day.selected {
+    background: #e84378;
+    color: white;
+}
+
+.day.empty {
+    background: transparent;
+    cursor: default;
+}
+
+.selected-info {
+    background: #fff0f5;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 15px;
+    color: #d94b7b;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.whatsapp-btn {
+    background: #25D366;
+    color: white;
+    padding: 14px;
+    width: 100%;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.footer {
+    text-align: center;
+    color: #bf7994;
+    margin-top: 25px;
+    font-size: 12px;
+}
+
+/* STEP 5: CELEBRATION */
+
+.confetti {
+    position: fixed;
+    top: -20px;
+    z-index: 10;
+    pointer-events: none;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* STEP 6: MOBILE RESPONSIVE */
+
+@media(max-width: 380px) {
+
+    h1 {
+        font-size: 27px;
+    }
+
+    .card {
+        padding: 28px 15px;
+    }
+
+    .day {
+        font-size: 12px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<main>
+
+<!-- STEP 7: DATE PROPOSAL PAGE -->
+
+<section class="card">
+
+    <div class="main-heart">💗</div>
+
+    <h1>Hey, Debjani! 🌸</h1>
+
+    <p>
+        I have a little something to ask you.
+        I hope this brings a smile to your face.
+    </p>
+
+    <h2>
+        Would you like to go on a date with me? 🥺❤️
+    </h2>
+
+    <p>
+        I'd love to spend some quality time with you,
+        share smiles, have lovely conversations
+        and create beautiful memories together. 🌹
+    </p>
+
+    <p><b>So, what do you say? 💕</b></p>
+
+    <div id="proposalButtons">
+
+        <button class="btn yes-btn" onclick="sayYes()">
+            YES ❤️
+        </button>
+
+        <button class="btn no-btn" id="noBtn" type="button">
+    NO 💔
+</button>
+
+    </div>
+
+    <div id="response" class="hidden"></div>
+
+    <button
+        id="changeAnswer"
+        class="btn no-btn hidden"
+        onclick="resetProposal()">
+
+        Change my answer ↩️
+
+    </button>
+
+</section>
+
+
+<!-- STEP 8: 2027 CALENDAR -->
+
+<section
+    id="calendarSection"
+    class="calendar-card hidden">
+
+    <h2>📅 Our Special Day</h2>
+
+    <p>
+        Let's choose a beautiful day in 2027
+        to make a lovely memory together! 🌷
+    </p>
+
+    <div class="calendar-header">
+
+        <button class="nav-btn" onclick="changeMonth(-1)">
+            ❮
+        </button>
+
+        <h3 id="monthYear"></h3>
+
+        <button class="nav-btn" onclick="changeMonth(1)">
+            ❯
+        </button>
+
+    </div>
+
+    <div class="calendar-grid" id="calendar"></div>
+
+    <div class="selected-info" id="selectedDate">
+        Select your favourite date first 💗
+    </div>
+
+    <button class="whatsapp-btn" onclick="confirmDate()">
+        Send My Date Choice on WhatsApp 💚
+    </button>
+
+</section>
+
+
+<div class="footer">
+    Made with love, just for Debjani 💌
+    <br>
+    A little question, a lot of courage. ❤️
+</div>
+
+</main>
+
+
+<script>
+
+// STEP 9: FLOATING HEARTS
+
+const hearts = ["❤️", "💕", "💗", "💖", "🌸"];
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerHTML =
+        hearts[Math.floor(Math.random() * hearts.length)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.fontSize =
+        (15 + Math.random() * 20) + "px";
+
+    heart.style.animationDuration =
+        (5 + Math.random() * 5) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 10000);
+}
+
+setInterval(createHeart, 500);
+
+
+// STEP 10: YES BUTTON
+
+function sayYes() {
+
+    const response = document.getElementById("response");
+
+    response.classList.remove("hidden");
+
+    response.innerHTML = `
+        <div style="font-size:55px;">🥰💐</div>
+
+        <h2>Yayyy, Debjani! ❤️</h2>
+
+        <p>
+            You just made my day special!
+            Let's choose our special day together. 🌸
+        </p>
+    `;
+
+    document.getElementById("proposalButtons")
+        .classList.add("hidden");
+
+    document.getElementById("changeAnswer")
+        .classList.remove("hidden");
+
+    document.getElementById("calendarSection")
+        .classList.remove("hidden");
+
+    renderCalendar();
+
+    celebrate();
+
+    document.getElementById("calendarSection")
+        .scrollIntoView({behavior: "smooth"});
+}
+
+
+// STEP 11: NO BUTTON
+
+function sayNo() {
+
+    const response = document.getElementById("response");
+
+    response.classList.remove("hidden");
+
+    response.innerHTML = `
+        <div style="font-size:55px;">🌷</div>
+        <h2>That's okay, Debjani! 💗</h2>
+        <p>
+            Thank you for being honest.
+            I respect your choice.
+            Wishing you a beautiful day! 😊
+        </p>
+    `;
+
+    document.getElementById("proposalButtons")
+        .classList.add("hidden");
+
+    document.getElementById("calendarSection")
+        .classList.add("hidden");
+
+    document.getElementById("changeAnswer")
+        .classList.remove("hidden");
+}
+
+
+// STEP 12: CHANGE ANSWER
+
+function resetProposal() {
+
+    document.getElementById("response")
+        .classList.add("hidden");
+
+    document.getElementById("proposalButtons")
+        .classList.remove("hidden");
+
+    document.getElementById("calendarSection")
+        .classList.add("hidden");
+
+    document.getElementById("changeAnswer")
+        .classList.add("hidden");
+}
+
+
+// STEP 13: CALENDAR SETTINGS
+
+let currentMonth = 0;
+let currentYear = 2027;
+let chosenDate = null;
+
+const monthNames = [
+    "January", "February", "March",
+    "April", "May", "June",
+    "July", "August", "September",
+    "October", "November", "December"
+];
+
+
+// STEP 14: DISPLAY CALENDAR
+
+function renderCalendar() {
+
+    const calendar = document.getElementById("calendar");
+
+    const monthYear = document.getElementById("monthYear");
+
+    calendar.innerHTML = "";
+
+    monthYear.innerText =
+        monthNames[currentMonth] + " " + currentYear;
+
+    const weekdays = [
+        "Sun", "Mon", "Tue", "Wed",
+        "Thu", "Fri", "Sat"
+    ];
+
+    weekdays.forEach(name => {
+
+        const div = document.createElement("div");
+
+        div.className = "day-name";
+
+        div.innerText = name;
+
+        calendar.appendChild(div);
+
+    });
+
+    const firstDay =
+        new Date(currentYear, currentMonth, 1).getDay();
+
+    const totalDays =
+        new Date(currentYear, currentMonth + 1, 0).getDate();
+
+    // Empty spaces
+
+    for (let i = 0; i < firstDay; i++) {
+
+        const empty = document.createElement("div");
+
+        empty.className = "day empty";
+
+        calendar.appendChild(empty);
+
+    }
+
+    // Display dates
+
+    for (let day = 1; day <= totalDays; day++) {
+
+        const date = new Date(
+            currentYear,
+            currentMonth,
+            day
+        );
+
+        const div = document.createElement("button");
+
+        div.className = "day";
+
+        div.type = "button";
+
+        div.innerText = day;
+
+        if (
+            chosenDate &&
+            chosenDate.getTime() === date.getTime()
+        ) {
+            div.classList.add("selected");
+        }
+
+        div.onclick = function() {
+
+            chosenDate = date;
+
+            renderCalendar();
+
+            document.getElementById("selectedDate")
+                .innerText =
+                "Our special day: " +
+                date.toLocaleDateString("en-IN", {
+                    weekday: "long",
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                }) + " ❤️";
+
+        };
+
+        calendar.appendChild(div);
+
+    }
+
+}
+
+
+// STEP 15: PREVIOUS AND NEXT MONTH
+
+function changeMonth(direction) {
+
+    currentMonth += direction;
+
+    if (currentMonth > 11) {
+
+        currentMonth = 0;
+        currentYear++;
+
+    }
+
+    if (currentMonth < 0) {
+
+        currentMonth = 11;
+        currentYear--;
+
+    }
+
+    if (currentYear > 2027) {
+
+        currentYear = 2027;
+        currentMonth = 11;
+
+    }
+
+    if (currentYear < 2027) {
+
+        currentYear = 2027;
+        currentMonth = 0;
+
+    }
+
+    renderCalendar();
+
+}
+
+
+// STEP 16: WHATSAPP INTEGRATION
+
+function confirmDate() {
+
+    if (!chosenDate) {
+
+        alert("Please select a date first! 💗");
+
+        return;
+
+    }
+
+    // REPLACE WITH YOUR WHATSAPP NUMBER
+    // Example: 919876543210
+
+    const phoneNumber = "917008998849";
+
+    if (!/^91\d{10}$/.test(phoneNumber)) {
+
+        alert("Please add your WhatsApp number in the code first!");
+
+        return;
+
+    }
+
+    const formatted = chosenDate.toLocaleDateString(
+        "en-IN", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        }
+    );
+
+    const message =
+        "Hey! ❤️ I selected our special date!\n\n" +
+        "Our chosen date: " + formatted +
+        "\n\nLooking forward to making beautiful memories! 🌸";
+
+    const whatsappURL =
+        "https://wa.me/" +
+        phoneNumber +
+        "?text=" +
+        encodeURIComponent(message);
+
+    window.open(whatsappURL, "_blank");
+
+}
+
+
+// STEP 17: CELEBRATION
+
+function celebrate() {
+
+    const symbols = [
+        "❤️", "💕", "💖", "✨", "🌸", "🎉"
+    ];
+
+    for (let i = 0; i < 60; i++) {
+
+        const item = document.createElement("div");
+
+        item.className = "confetti";
+
+        item.innerText =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+        item.style.left = Math.random() * 100 + "vw";
+
+        item.style.animationDuration =
+            (2 + Math.random() * 3) + "s";
+
+        document.body.appendChild(item);
+
+        setTimeout(() => item.remove(), 5000);
+
+    }
+
+}
+// STEP 18: MOVING NO BUTTON
+
+const noButton = document.getElementById("noBtn");
+
+function moveNoButton() {
+    const maxX = Math.max(10, window.innerWidth - noButton.offsetWidth - 20);
+    const maxY = Math.max(10, window.innerHeight - noButton.offsetHeight - 20);
+
+    const randomX = 10 + Math.random() * (maxX - 10);
+    const randomY = 10 + Math.random() * (maxY - 10);
+
+    noButton.style.position = "fixed";
+    noButton.style.left = randomX + "px";
+    noButton.style.top = randomY + "px";
+    noButton.style.zIndex = "100";
+}
+
+noButton.addEventListener("mouseenter", moveNoButton);
+
+noButton.addEventListener("touchstart", function(event) {
+    event.preventDefault();
+    moveNoButton();
+}, { passive: false });
+</script>
+
+</body>
+</html>
